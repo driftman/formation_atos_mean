@@ -1,0 +1,12 @@
+<div class="container" ng-controller="ItemCtrl">
+  <h2>Ajout d'un nouvel article: </h2>
+  <form>
+    <div class="form-group">
+      <label for="title">Désignation de l'article: </label>
+      <input ng-model="article.title" class="form-control" id="title" placeholder="Désignation ...">
+      <label for="title">Déscription : </label>
+      <input ng-model="article.description" class="form-control" id="description" placeholder="Déscription ...">
+    </div>
+    <button class="btn btn-default" ng-click="ajouterArticle(article)">Ajouter</button>
+  </form>
+</div>
