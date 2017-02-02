@@ -26,10 +26,23 @@ module.exports = {
 		});
 	},
 
+	update: function update(req, res) {
+		var item = req.body;
+		Item.update(item.id, item)
+		.then(function(item, err) {
+			// sails.log('I\'m heeere [error]', err);
+			if(err) {
+				sails.error(err);
+				res.forbidden(getError());
+			}
+			// sails.log('I\'m heeere [success]', item);
+			res.ok(item)
+		});
+	},
+
 	// ajoute un nouvel article
 	add: function add(req, res) {
 		var item = req.body;
-		sails.log(item);
 		Item.create(item)
 		.then(function(item, err) {
 			if(err) {

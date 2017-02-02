@@ -60,7 +60,7 @@ module.exports.connections = {
     adapter: 'sails-mongo',
     host: 'localhost',
     port: 27017,
-    database: 'formation_mean_stack' //optional
+    database: 'formation_mean_stack_3' //optional
   },
 
   /***************************************************************************

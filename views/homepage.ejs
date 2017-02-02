@@ -1,12 +1,48 @@
 <div class="container" ng-controller="ItemCtrl">
-  <h2>Ajout d'un nouvel article: </h2>
-  <form>
-    <div class="form-group">
-      <label for="title">Désignation de l'article: </label>
-      <input ng-model="article.title" class="form-control" id="title" placeholder="Désignation ...">
-      <label for="title">Déscription : </label>
-      <input ng-model="article.description" class="form-control" id="description" placeholder="Déscription ...">
+  <div ng-show="true">
+    <h3> Liste des articles <i> (Appel d'un web service avec un service qui dépend de $http et $q) </i>: </h3>
+    <div class="table-responsive">
+      <table class="table">
+        <tr>
+          <td> Désignation </td>
+          <td> Déscription </td>
+          <td> Actif </td>
+          <td> Actions </td>
+          <td> Messages </td>
+        </tr>
+        <tr ng-repeat="article in articles" style="background: {{ article.activated && article.activated === true ? 'transparent;' : '#e0b5b5;' }}">
+          <td ng-show="!article.edit"> {{ article.title }} </td>
+          <td ng-show="article.edit"> <input type="text" ng-model="article.title" </td>
+          <td ng-show="!article.edit"> {{ article.description }} </td>
+          <td ng-show="article.edit"> <input type="text" ng-model="article.description" </td>
+          <td> <input type="checkbox" ng-model="article.activated" ng-change="activateOrDeactivate(article)" /> </td>
+          <td> 
+            <button class="btn btn-success" ng-show="article.edit" ng-click="edit(article)"> Valider </button>
+            <button class="btn btn-default" ng-show="!article.edit" ng-click="edit(article)"> Modifier </button>
+          </td>
+          <td>
+            <p ng-show="article.updatingState && article.updatingState.state" style="color:{{ (article.updatingState.succeeded === 1 || article.updatingState.state === 0) ? 'black;' : 'red;' }}"> <i> {{ article.updatingState.state }} </i> <p>
+            <p ng-show="article.updatingState && article.updatingState.state && article.updatingState.message" style="color: red;' }}"> <i> {{ article.updatingState.message }} </i> <p>
+          </td>
+        </tr>
+      </table>
     </div>
-    <button class="btn btn-default" ng-click="ajouterArticle(article)">Ajouter</button>
-  </form>
+  </div>
+  <div ng-show="true">
+    <h3> Ajout d'un nouvel article: <i> (Gestion de formulaire + Services) </i>: </h3>
+    <h3> L'object JSON en question : <h3>
+    <h4> {{ article }} </h4>
+    <form>
+      <div class="form-group">
+        <label for="title">Désignation de l'article: </label>
+        <input ng-model="article.title" class="form-control" id="title" placeholder="...">
+        <label for="title">Déscription : </label>
+        <input ng-model="article.description" class="form-control" id="description" placeholder="...">
+      </div>
+      <button class="btn btn-default" ng-click="ajouterArticle(article)">Ajouter</button>
+    </form>
+    <h2>Détails (Le two way data binding): </h2>
+    <p> Le nom de l'article est: <i> {{ article.title }} </i> </p>
+    <p> La déscription: <i> {{ article.description }} </i> </p>
+  </div>
 </div>

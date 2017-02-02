@@ -76,6 +76,12 @@ module.exports.routes = {
     controller: 'ItemController',
     action: 'add',
     skipAssets: true
+  },
+
+  'put /items': {
+    controller: 'ItemController',
+    action: 'update',
+    skipAssets: true
   }
 
   // 'post /path/to': {

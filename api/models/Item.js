@@ -27,9 +27,14 @@ module.exports = {
   	},
 
   	description: {
-  		type: 'longtext',
-  		required: true
-  	},
+      type: 'longtext',
+      required: true
+    },
+
+    activated: {
+      type: 'boolean',
+      defaultsTo: true
+    },
 
   	// Cette partie est
   	// pour les relations entre différents model
